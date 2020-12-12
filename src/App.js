@@ -5,14 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
-  const [texto, setTexto] = useState([]);
+  //const [texto, setTexto] = useState([]);
+  const [turnosEf, setTurnosEf] = useState([]);
 
   let turnos = [
-    { Proc: 'Proc1', HoraI: '7:30', HoraF: '8:00' },
-    { Proc: 'Proc2', HoraI: '0:00', HoraF: '8:30' },
-    { Proc: 'Proc3', HoraI: '8:00', HoraF: '16:00' },
-    { Proc: 'Proc4', HoraI: '11:00', HoraF: '22:00' },
-    { Proc: 'Proc5', HoraI: '21:00', HoraF: '23:30' }
+    { Proc: 'Proc1', HoraI: '0:00', HoraF: '8:00' },
+    { Proc: 'Proc2', HoraI: '5:00', HoraF: '12:00' },
+    { Proc: 'Proc3', HoraI: '11:00', HoraF: '22:00' },
+    { Proc: 'Proc4', HoraI: '12:00', HoraF: '24:00' },
+    { Proc: 'Proc5', HoraI: '22:00', HoraF: '24:00' }
   ];
 
   function ordenar(entrada) {
@@ -32,9 +33,10 @@ function App() {
   }
 
   function ordenados(entrada) {
-    setTexto(ordenar(entrada));
+    //setTexto(ordenar(entrada));
     //console.log(ordenar(entrada));
     console.log(hospitalVoraz(ordenar(entrada)))
+    return ordenar(entrada)
   }
 
 
@@ -85,6 +87,7 @@ function App() {
 
   function hospitalVoraz(entrada) {
     let TurnosEficientes = [];
+    setTurnosEf([]);
     let turnoI = entrada[0];
     TurnosEficientes.push(turnoI);
 
@@ -97,10 +100,52 @@ function App() {
         }
       }
     }
-    return TurnosEficientes;
+    setTurnosEf(TurnosEficientes);
+    console.log( TurnosEficientes)
   }
 
-  /*
+  
+
+
+  return (
+    <div className="App">
+      <div className='contene'>
+        <Button className='mb-2' color='primary' onClick={() => hospitalVoraz(ordenados(turnos))}><b>Ordenar los Turnos</b></Button><br />
+        <div className='conteneTabla'>
+          <Table size="sm">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Procedimiento</th>
+                <th>Hora Inicial</th>
+                <th>Hora Final</th>
+              </tr>
+            </thead>
+            <tbody>
+              {turnosEf.map((tur, i) =>
+                <tr>
+                  <th scope="row">{i}</th>
+                  <td>{tur.Proc}</td>
+                  <td>{tur.HoraI}</td>
+                  <td>{tur.HoraF}</td>
+                </tr>
+              )}
+            </tbody>
+          </Table>
+        </div>
+      </div>
+      <input type="file" id='entrada' />
+      <h3>Contenido del archivo:</h3>
+      <pre id="contenido-archivo"></pre>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+/*
   
     function leerArchivo(e) {
       var archivo = e.target.files[0];
@@ -161,43 +206,3 @@ function App() {
     return nuevoArray.concat(izq.slice(izqIndex)).concat(der.slice(derIndex));
   }
 */
-
-
-  return (
-    <div className="App">
-      <div className='contene'>
-        <Button className='mb-2' color='primary' onClick={() => ordenados(turnos)}>Ordenar los Turnos</Button><br />
-        <div className='conteneTabla'>
-          <Table size="sm">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Procedimiento</th>
-                <th>Hora Inicial</th>
-                <th>Hora Final</th>
-              </tr>
-            </thead>
-            <tbody>
-              {texto.map((text, i) =>
-                <tr>
-                  <th scope="row">{i}</th>
-                  <td>{text.Proc}</td>
-                  <td>{text.HoraI}</td>
-                  <td>{text.HoraF}</td>
-                </tr>
-              )}
-
-
-            </tbody>
-          </Table>
-        </div>
-      </div>
-      <input type="file" id='entrada' />
-      <h3>Contenido del archivo:</h3>
-      <pre id="contenido-archivo"></pre>
-
-    </div>
-  );
-}
-
-export default App;
