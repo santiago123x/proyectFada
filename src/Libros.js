@@ -83,6 +83,7 @@ function Libros() {
 
     function imprimir() {
         let noe = ''
+        noe += maxDias(arrayLibros)+' Dias ----> '
         for (var j = 0; j < arrayLibros.length; j++) {
             for (var i = 0; i < arrayLibros[j].length; i++) {
                 //noe += `\nEscritor #:  ${j} Libro: ${arrayLibros[j][i].Nombre} # Paginas: ${arrayLibros[j][i].Paginas}\n`
@@ -94,6 +95,23 @@ function Libros() {
         
     }
 
+    function maxDias(array) {
+        let maxPag = 0;
+        for (let i = 0; i < array.length; i++) {
+            let contador = 0;
+    
+            for (let y = 0; y < array[i].length; y++) {
+                contador += array[i][y].Paginas;
+                if (contador > maxPag) {
+                    maxPag = contador;
+    
+                }
+            }
+        }
+        return maxPag;
+    }
+
+    
 
     return (
         <div className="App">

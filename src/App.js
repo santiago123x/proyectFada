@@ -7,14 +7,18 @@ function App() {
 
   //const [texto, setTexto] = useState([]);
   const [turnosEf, setTurnosEf] = useState([]);
+  const [horas, setHoras] = useState();
+
+  
 
   let turnos = [
-    { Proc: 'Proc1', HoraI: '0:00', HoraF: '8:00' },
+    { Proc: 'Proc1', HoraI: '0:00', HoraF: '8:30' },
     { Proc: 'Proc2', HoraI: '5:00', HoraF: '12:00' },
-    { Proc: 'Proc3', HoraI: '11:00', HoraF: '22:00' },
+    { Proc: 'Proc3', HoraI: '11:00', HoraF: '21:30' },
     { Proc: 'Proc4', HoraI: '12:00', HoraF: '24:00' },
     { Proc: 'Proc5', HoraI: '22:00', HoraF: '24:00' }
   ];
+
 
   function ordenar(entrada) {
 
@@ -93,18 +97,45 @@ function App() {
 
     for (let i = 1; i < entrada.length; i++) {
 
-      if (sacarHora(turnoI.HoraF) <= sacarHora(entrada[i].HoraI)) {
+      if (sacarHora(turnoI.HoraF) === sacarHora(entrada[i].HoraI)) {
         if (sacarMinutos(turnoI.HoraF) <= sacarMinutos(entrada[i].HoraI)) {
           turnoI = entrada[i];
           TurnosEficientes.push(turnoI);
-        }
+        }        
+      }else if (sacarHora(turnoI.HoraF) < sacarHora(entrada[i].HoraI)){
+        turnoI = entrada[i];
+        TurnosEficientes.push(turnoI);
       }
     }
     setTurnosEf(TurnosEficientes);
-    console.log( TurnosEficientes)
+    setHoras(horasTotal(TurnosEficientes));
   }
 
-  
+  function horasTotal (array){
+    let totalH = 0;
+    let totalM = 0 ;
+    for (let i = 0; i < array.length; i++){
+      let hora = sacarHora(array[i].HoraF) - sacarHora(array[i].HoraI);
+      let min = sacarMinutos(array[i].HoraF) - sacarMinutos(array[i].HoraI);
+      if (min < 0){
+        hora -= 1;
+        min = 30; 
+      }
+      totalH += hora;
+      totalM += min;
+      if (totalM === 60){
+        totalH += 1;
+        totalM = 0;
+      }
+    }
+    if(totalH<10){
+      totalH = '0'+totalH;
+    }
+    if(totalM<10){
+      totalM = '0'+totalM;
+    }
+    return `Tiempo de uso de la sala: ${totalH}:${totalM}`
+  }
 
 
   return (
@@ -112,6 +143,7 @@ function App() {
       <div className='contene'>
         <Button className='mb-2' color='primary' onClick={() => hospitalVoraz(ordenados(turnos))}><b>Ordenar los Turnos</b></Button><br />
         <div className='conteneTabla'>
+          <h4>{horas}</h4>
           <Table size="sm">
             <thead>
               <tr>
@@ -130,6 +162,7 @@ function App() {
                   <td>{tur.HoraF}</td>
                 </tr>
               )}
+              
             </tbody>
           </Table>
         </div>
@@ -145,36 +178,10 @@ function App() {
 export default App;
 
 
-/*
-  
-    function leerArchivo(e) {
-      var archivo = e.target.files[0];
-      if (!archivo) {
-        return;
-      }
-      var lector = new FileReader();
-      lector.onload = function (e) {
-        setTexto(e.target.result);
-        console.log(texto)
-        mostrarContenido(texto);
-      };
-      lector.readAsText(archivo);
-    }
-  
-  
-    function mostrarContenido(contenido) {
-      var elemento = document.getElementById('contenido-archivo');
-      elemento.innerHTML = contenido;
-    }
+
   
     
-      let text = document.getElementById('entrada')
-      if (text) {
-        text.addEventListener('click', leerArchivo, false);
-        console.log('hola')
-      }
-    
-  */
+  
   /*
   function merge(izq, der) {
     let nuevoArray = [], izqIndex = 0, derIndex = 0;

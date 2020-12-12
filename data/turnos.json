@@ -1,0 +1,34 @@
+{
+    "turnos":[
+        {
+            "No": "0",
+            "Procedimiento": "Proc1",
+            "HoraI": "0:00",
+            "HoraF": "8:00"
+        },
+        {
+            "No": "1",
+            "Procedimiento": "Proc2",
+            "HoraI": "5:00",
+            "HoraF": "12:00"
+        },
+        {
+            "No": "2",
+            "Procedimiento": "Proc3",
+            "HoraI": "11:00",
+            "HoraF": "22:00"
+        },
+        {
+            "No": "3",
+            "Procedimiento": "Proc4",
+            "HoraI": "12:00",
+            "HoraF": "24:00"
+        },
+        {
+            "No": "4",
+            "Procedimiento": "Proc5",
+            "HoraI": "22:00",
+            "HoraF": "24:00"
+        }
+    ]
+}
