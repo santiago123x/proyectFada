@@ -6,6 +6,13 @@
   margin: 0;
   padding: 0;
 }
+.App{
+  width: 50%;
+  display: inline-block;
+  position: relative;
+  float: left;
+  
+}
 
 body {
   font-family: 'Noto Sans';
@@ -38,7 +45,17 @@ h3 {
 .contene{
   margin: 2%;
   padding: 2%;
+  width: 100%;
 }
 .conteneTabla{
-  width: 60%;
+  width: 90%;
+}
+
+.formu,.select{
+  width: 80%;
+}
+
+.btn{
+  display:inline-block;
+  height: 3em;
 }
