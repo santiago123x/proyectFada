@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Libros from './Libros';
-import Procedimiento from './SeleccionA';
+import App from './SeleccionAV';
+import Libros from './LibrosV';
+import Procedimiento from './SeleccionAD';
 
 
 ReactDOM.render(
