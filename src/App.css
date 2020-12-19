@@ -7,10 +7,8 @@
   padding: 0;
 }
 .App{
-  width: 50%;
-  display: inline-block;
-  position: relative;
-  float: left;
+  width: 100%;
+  
   
 }
 
@@ -48,11 +46,11 @@ h3 {
   width: 100%;
 }
 .conteneTabla{
-  width: 90%;
+  width: 80%;
 }
 
 .formu,.select{
-  width: 80%;
+  width: 60%;
 }
 
 .btn{

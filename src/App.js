@@ -4,19 +4,13 @@ import { Button, Form, FormGroup, Input,  Label, Table,ButtonGroup } from 'react
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  let turnos = [
-    { Proc: 'Proc1', HoraI: '0:00', HoraF: '8:30' },
-    { Proc: 'Proc2', HoraI: '5:00', HoraF: '12:00' },
-    { Proc: 'Proc3', HoraI: '11:00', HoraF: '21:30' },
-    { Proc: 'Proc4', HoraI: '12:00', HoraF: '24:00' },
-    { Proc: 'Proc5', HoraI: '22:00', HoraF: '24:00' }
-  ];
-  //const [texto, setTexto] = useState([]);
+ 
+  
   const [turnosEf, setTurnosEf] = useState([]);
   const [love, setLove] = useState(0);
   const [horas, setHoras] = useState();
   const [arreglo, setArreglo] = useState([]);
-  //const [select,setSelect] = useState('');
+  
   const [nom,setNom] = useState('');
   const [Hi,setHi] = useState('');
   const [Hf,setHf] = useState('');
@@ -230,7 +224,7 @@ function App() {
       </div>
         <Button className='mb-2' color='primary' onClick={() => hospitalVoraz(ordenados(arreglo))}><b>Ordenar los Turnos</b></Button><br />
         <div className='conteneTabla'>
-          <h4>{horas}</h4>
+          <h4>Numero de Horas de Uso de la Sala: {horas}</h4>
           <Table size="sm">
             <thead>
               <tr>

@@ -13,14 +13,7 @@ function Libros() {
 
   const [arrayLibros, setArrLib] = useState([]);
 
-  let libros = [
-    { Nombre: 'Libro1', Paginas: 103 },
-    { Nombre: 'Libro2', Paginas: 203 },
-    { Nombre: 'Libro3', Paginas: 343 },
-    { Nombre: 'Libro4', Paginas: 53 },
-    { Nombre: 'Libro5', Paginas: 130 },
-    { Nombre: 'Libro6', Paginas: 90 }
-  ]
+  
 
 
 
